@@ -1,80 +1,27 @@
 package main
 
-import (
-	"fmt"
-)
-
 func checkFirstAndLastIndex(word string) (bool, string) {
-	var firstNum, lastNum string
-	firstChar := string(word[0])
-	lastChar := string(word[len(word)-1])
+	var firstChar rune
+	var lastChar rune
+	finalNum := ""
 
-	switch {
-	case firstChar == "1":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "2":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "3":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "4":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "5":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "6":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "7":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "8":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	case firstChar == "9":
-		fmt.Printf("%s, found\n", firstChar)
-		firstNum = firstChar
-	default:
-		fmt.Println("No numbers found in first index")
-		return false, ""
+	for _, char := range word[:3] {
+		if '0' <= char && char <= '9' {
+			firstChar = char
+			break
+		}
 	}
 
-	switch {
-	case lastChar == "1":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "2":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "3":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "4":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "5":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "6":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "7":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "8":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	case lastChar == "9":
-		fmt.Printf("%s, found\n", lastChar)
-		lastNum = lastChar
-	default:
-		fmt.Println("No numbers found in last index")
-		return false, ""
+	for _, char := range word[len(word)-3:] {
+		if '0' <= char && char <= '9' {
+			lastChar = char
+			break
+		}
 	}
 
-	finalNum := firstNum + lastNum
+	if firstChar == 0 || lastChar == 0 {
+		return false, ""
+	}
+	finalNum = string(firstChar) + string(lastChar)
 	return true, finalNum
 }
